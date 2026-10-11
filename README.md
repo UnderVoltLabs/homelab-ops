@@ -28,6 +28,7 @@ Runs Proxmox VE. Bought in September 2026 for about $1,560 CAD.
 - ThinkPad T16 Gen 2 (AMD) laptop: Ryzen 7 7840U, 32 GB DDR5, 1 TB SSD
 - VS Code, with AI coding tools (Claude Pro, GitHub Copilot)
 - Manages the server over Tailscale: SSH, and the Proxmox web UI on port 8006
+- Runs the IaC tools (OpenTofu, Ansible) from here and applies them to the server over SSH
 
 ## Progress
 
