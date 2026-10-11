@@ -16,3 +16,33 @@ everything, and measuring what it all really costs.
 | PSU | 1000W 80+ Gold |
 
 Runs Proxmox VE. Bought in September 2026 for about $1,560 CAD.
+
+## Stack
+
+**Server**
+- Proxmox VE 9.2.2
+- Tailscale 1.104.1 for remote access
+- Planned: Ubuntu Server VM built with IaC (OpenTofu + Ansible)
+
+**Workstation**
+- ThinkPad T16 Gen 2 (AMD) laptop: Ryzen 7 7840U, 32 GB DDR5, 1 TB SSD
+- VS Code, with AI coding tools (Claude Pro, GitHub Copilot)
+- Manages the server over Tailscale: SSH, and the Proxmox web UI on port 8006
+
+## Progress
+
+| Step | Status |
+|------|--------|
+| Install Proxmox | ✅ Done |
+| Install Tailscale | ✅ Done |
+| Ubuntu Server VM (IaC) | ⬜ Planned |
+| GPU passthrough | ⬜ Planned |
+| Docker | ⬜ Planned |
+| PostgreSQL | ⬜ Planned |
+| Ollama | ⬜ Planned |
+| IT cost analyser | ⬜ Planned |
+
+## Log
+
+### 2026-10-11
+- Installed Proxmox and Tailscale.
