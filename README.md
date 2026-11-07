@@ -14,8 +14,21 @@ everything, and measuring what it all really costs.
 | RAM | 32 GB DDR5 |
 | Storage | 1 TB SSD + 256 GB SSD |
 | PSU | 1000W 80+ Gold |
+| Network switch | UGREEN 8-port 2.5G Ethernet switch (unmanaged, plug & play) |
 
 Runs Proxmox VE. Bought in September 2026 for about $1,560 CAD.
+
+### Network wiring
+
+```
+Router ── UGREEN switch ──── Proxmox server
+                                   ┆
+                                   ┆  Tailscale (SSH), virtual link
+                                   ┆
+                              Laptop (anywhere)
+```
+
+The switch is plugged into the router, and the Proxmox server is plugged into the switch. The laptop reaches the server from anywhere over Tailscale.
 
 ## Stack
 
