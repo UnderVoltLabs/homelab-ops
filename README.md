@@ -14,15 +14,17 @@ everything, and measuring what it all really costs.
 | RAM | 32 GB DDR5 |
 | Storage | 1 TB SSD + 256 GB SSD |
 | PSU | 1000W 80+ Gold |
-| Switch | UGREEN 8-port 2.5 GbE, unmanaged |
+| Network switch | UGREEN 8-port 2.5G Ethernet switch (unmanaged, plug & play) |
 
 Runs Proxmox VE. Bought in September 2026 for about $1,560 CAD.
 
-## Network
+### Network wiring
 
-- UGREEN 8-port 2.5 GbE switch: unmanaged, plug and play (no configuration, no VLANs, so the network stays flat).
-- The switch is connected to the router, and the Proxmox server is plugged into the switch.
-- Server NIC speed (1 GbE or 2.5 GbE) not checked yet.
+```
+Router ── UGREEN switch ──── Proxmox server
+```
+
+The switch is plugged into the router, and the Proxmox server is plugged into the switch.
 
 ## Stack
 
@@ -52,9 +54,6 @@ Runs Proxmox VE. Bought in September 2026 for about $1,560 CAD.
 | IT cost analyser | ⬜ Planned |
 
 ## Log
-
-### 2026-11-07
-- Added a UGREEN 8-port 2.5 GbE unmanaged switch: router -> switch -> Proxmox server. Flat network, no VLANs.
 
 ### 2026-10-29
 - Set up SSH key authentication from the laptop to Proxmox: a dedicated Ed25519 key (`admin-laptop`) for the `admin` user, plus a `proxmox` host alias in the laptop's SSH config.
