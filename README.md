@@ -28,8 +28,6 @@ Router ── UGREEN switch ──── Proxmox server
                               Laptop (anywhere)
 ```
 
-The switch is plugged into the router, and the Proxmox server is plugged into the switch. The laptop reaches the server from anywhere over Tailscale.
-
 ## Stack
 
 **Server**
