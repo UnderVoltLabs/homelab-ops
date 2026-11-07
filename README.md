@@ -22,9 +22,13 @@ Runs Proxmox VE. Bought in September 2026 for about $1,560 CAD.
 
 ```
 Router ── UGREEN switch ──── Proxmox server
+                                   ┆
+                                   ┆  Tailscale (SSH), virtual link
+                                   ┆
+                              Laptop (anywhere)
 ```
 
-The switch is plugged into the router, and the Proxmox server is plugged into the switch.
+The switch is plugged into the router, and the Proxmox server is plugged into the switch. The laptop reaches the server from anywhere over Tailscale.
 
 ## Stack
 
