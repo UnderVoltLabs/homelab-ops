@@ -59,7 +59,8 @@ Router ── UGREEN switch ──── Proxmox server
 
 ### 2026-11-08
 - Installed a custom GPU fan curve on the retrogaming PC (Quadro P4000, Linux Mint) at about 21:46 (America/Toronto). Coolbits=4 is enabled through `/etc/X11/xorg.conf.d/20-nvidia-coolbits.conf`. The curve is 40 °C: 40 %, 50 °C: 50 %, 60 °C: 65 %, 70 °C: 85 %, 75 °C: 100 %, and it fails safe to the driver's automatic control.
-- The `gpu-fan-curve` systemd service starts and reaches X with Coolbits (the `ExecStopPost` reset worked). Still to confirm: the "Fan curve active" journal line and a `gpu_burn` run under load.
+- The `gpu-fan-curve` systemd service starts and reaches X with Coolbits (the `ExecStopPost` reset worked).
+- Verified under load: a 5-minute stress test now peaks at 62 °C, versus 80 °C with the stock fan curve.
 - Procedure and scripts: [gpu-fan/fan-curve.md](gpu-fan/fan-curve.md).
 
 ### 2026-10-29
