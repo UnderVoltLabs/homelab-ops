@@ -57,6 +57,11 @@ Router ── UGREEN switch ──── Proxmox server
 
 ## Log
 
+### 2026-11-08
+- Installed a custom GPU fan curve on the retrogaming PC (Quadro P4000, Linux Mint) at about 21:46 (America/Toronto). Coolbits=4 is enabled through `/etc/X11/xorg.conf.d/20-nvidia-coolbits.conf`. The curve is 40 °C: 40 %, 50 °C: 50 %, 60 °C: 65 %, 70 °C: 85 %, 75 °C: 100 %, and it fails safe to the driver's automatic control.
+- The `gpu-fan-curve` systemd service starts and reaches X with Coolbits (the `ExecStopPost` reset worked). Still to confirm: the "Fan curve active" journal line and a `gpu_burn` run under load.
+- Procedure and scripts: [gpu-fan/fan-curve.md](gpu-fan/fan-curve.md).
+
 ### 2026-10-29
 - Set up SSH key authentication from the laptop to Proxmox: a dedicated Ed25519 key (`admin-laptop`) for the `admin` user, plus a `proxmox` host alias in the laptop's SSH config.
 - Hardened the Proxmox SSH server: root login disabled (`PermitRootLogin no`) and password logins disabled (`PasswordAuthentication no`), so only keys work. The Proxmox web console stays available as a fallback.

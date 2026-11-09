@@ -1,0 +1,29 @@
+# gpu-fan-curve.service - starts the GPU fan curve script at boot and keeps it running.
+# (In systemd files, comments must be on their own line.)
+
+[Unit]
+Description=GPU fan curve (Quadro P4000)
+# Start after the login screen (LightDM): the script needs the desktop (X) to be up.
+# Side effect: at shutdown this service stops BEFORE X, so the fan reset still works.
+After=display-manager.service
+
+[Service]
+# Same desktop access as in the script (also used by ExecStopPost below).
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=/var/run/lightdm/root/:0
+
+# The script to run.
+ExecStart=/usr/local/bin/gpu-fan-curve.sh
+
+# Safety net: whenever the script stops, even if it crashed or was killed,
+# give the fan back to the driver. The "-" means "ignore errors" (e.g. X already gone).
+ExecStopPost=-/usr/bin/nvidia-settings -a [gpu:0]/GPUFanControlState=0
+
+# If the script ever stops on its own, restart it after 5 seconds.
+# ("systemctl stop" still stops it for good.)
+Restart=always
+RestartSec=5
+
+[Install]
+# "systemctl enable" makes it start with the normal graphical boot.
+WantedBy=graphical.target
