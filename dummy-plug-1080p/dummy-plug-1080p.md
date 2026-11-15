@@ -44,7 +44,7 @@ Edit the last line of `~/.local/bin/set-1080p.sh`, then `systemctl --user start 
 ## Lessons learned
 
 - The first attempt used `WantedBy=xdg-desktop-autostart.target`. Cinnamon never triggers it, so after a reboot the output was back to 4096x2160. Hooking to `sunshine.service` fixed it.
-- Tested with a Sunshine restart (forced 1920x1200, then back to 1080p60). **A real reboot test is still pending.**
+- Tested with a Sunshine restart (forced 1920x1200, then back to 1080p60), then confirmed working after a real reboot (2026-11-15).
 
 ## Sunshine apps
 
