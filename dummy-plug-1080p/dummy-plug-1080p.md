@@ -11,7 +11,7 @@ Without it, the dummy plug advertises 4096x2160 @ 29.97 Hz (output `DP-7` today)
 | [`set-1080p.sh`](set-1080p.sh) | `~/.local/bin/` | Picks the first connected output with `xrandr` and sets `1920x1080 --rate 60 --primary` |
 | [`set-1080p.service`](set-1080p.service) | `~/.config/systemd/user/` | User service (`Type=oneshot`) run before `sunshine.service`, retried up to 5 times if X is not ready |
 
-Unlike [`gpu-fan-curve`](../gpu-fan/fan-curve.md), this is a **user** service: no sudo, but it needs the auto-login session to be running. It is hooked to `sunshine.service` (`WantedBy=sunshine.service`), so the resolution is applied every time Sunshine starts.
+Unlike `gpu-fan-curve`, this is a **user** service: no sudo, but it needs the auto-login session to be running. It is hooked to `sunshine.service` (`WantedBy=sunshine.service`), so the resolution is applied every time Sunshine starts.
 
 Not used: an Xorg `MetaModes` option (more robust, but a wrong value can give a black screen). `Coolbits=4` is unrelated: it only unlocks fan control.
 
