@@ -1,30 +1,19 @@
-# set-1080p.service: user service (systemd --user), not a system service.
-# Installed in ~/.config/systemd/user/; no sudo needed.
-#
-# It depends on the user session (auto-login must be enabled): it runs as
-# the user, once display :0 is available.
+# User service (systemd --user). Needs auto-login. No sudo.
 [Unit]
 Description=Force the dummy plug to 1920x1080@60 before Sunshine
-# Runs BEFORE Sunshine so that Sunshine already captures 1080p.
 Before=sunshine.service
-# Retry limit: at most 5 attempts within 60 s.
 StartLimitIntervalSec=60
 StartLimitBurst=5
 
 [Service]
-# oneshot: the script applies the setting, then exits. RemainAfterExit keeps
-# the service "active" so that Before= is still honored.
 Type=oneshot
 RemainAfterExit=yes
-# %h = the user's home directory. Change the resolution in the script,
-# never here.
+# %h = home directory. Change the resolution in the script, not here.
 ExecStart=%h/.local/bin/set-1080p.sh
-# Retry if the display is not ready yet (the script exits with an error).
+# Retry if the display is not ready.
 Restart=on-failure
 RestartSec=3
 
 [Install]
-# Hooked to sunshine.service: 1080p is applied every time Sunshine
-# (re)starts. Do NOT use xdg-desktop-autostart.target: Cinnamon never
-# triggers it (the first attempt failed because of that).
+# Not xdg-desktop-autostart.target: Cinnamon never triggers it.
 WantedBy=sunshine.service
