@@ -1,0 +1,30 @@
+# set-1080p.service : service utilisateur (systemd --user), pas un service système.
+# Installé dans ~/.config/systemd/user/ ; aucun sudo nécessaire.
+#
+# Il dépend de la session (l'auto-login doit être actif) : il tourne avec
+# l'utilisateur, une fois l'affichage :0 disponible.
+[Unit]
+Description=Force le dummy plug en 1920x1080@60 avant Sunshine
+# S'exécute AVANT Sunshine pour que Sunshine capture déjà du 1080p.
+Before=sunshine.service
+# Limite de réessais : 5 essais en 60 s au maximum.
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
+[Service]
+# oneshot : le script applique le réglage puis se termine. RemainAfterExit
+# garde le service « actif » pour que Before= reste respecté.
+Type=oneshot
+RemainAfterExit=yes
+# %h = dossier personnel de l'utilisateur. La résolution se change dans le
+# script, jamais ici.
+ExecStart=%h/.local/bin/set-1080p.sh
+# Réessaie si l'affichage n'est pas encore prêt (le script sort en erreur).
+Restart=on-failure
+RestartSec=3
+
+[Install]
+# Accroché à sunshine.service : le 1080p est appliqué à chaque (re)démarrage
+# de Sunshine. Ne PAS utiliser xdg-desktop-autostart.target : Cinnamon ne le
+# déclenche jamais (premier essai raté).
+WantedBy=sunshine.service
